@@ -3,6 +3,7 @@
 # include <fstream>
 # include <sstream>
 # include <vector>
+
 struct PlayerClass{
     public:
         std::string character_name;
@@ -101,6 +102,7 @@ std::vector<std::vector<std::string>> ReadSavingFile(){
     }
     return saving_file;
 }
+
 void SaveGame(PlayerClass player){
     std::vector<std::vector<std::string>> saving_file = ReadSavingFile();
     std::cout <<" Where do u want to save at?"<<std::endl;
@@ -115,6 +117,7 @@ void SaveGame(PlayerClass player){
     for(std::string str: saving_file[loc]){
         std::cout <<str <<" ";
     }
+    std::cout << std::endl;
     std::cout << "================================"<<std::endl;
     for(std::vector<std::string> vec: saving_file){
         for(std::string str: vec){
@@ -124,15 +127,23 @@ void SaveGame(PlayerClass player){
     }
 }
 
-/*
+
 PlayerClass LoadGame(){
-    string line, csvItem;
-    ifstream savingfile ("PlayerSavings.csv");
-    std::cout << "select saving file" <<std::endl;
+    std::cout <<"These are the files we have, which do u want to load?"<<std::endl;
+    std::vector<std::vector<std::string>> saving_file = ReadSavingFile();
+    std::cout << "your choice: ";
+    int loc;
+    std::cin >> loc;
+
+    PlayerClass player_load;
+    player_load.character_name  =   saving_file[loc][1];
+    player_load.HealthPoints    =   std::stoi(saving_file[loc][2]);
+    player_load.MagicPoints     =   std::stoi(saving_file[loc][3]);
+    player_load.process         =   std::stoi(saving_file[loc][4]);
     
-    return player;
+    return player_load;
 }
-*/
+
 int main(){
     int start_command = Start_Menu_Initialize();
     
@@ -142,18 +153,23 @@ int main(){
         std::cout <<"Game Start!"<<std::endl;
     }
     else if(start_command == 2){
-      // player = LoadGame()
-        std::cout << player.HealthPoints << std::endl;
-        std::cout << player.MagicPoints << std::endl;
-        std::cout << player.process << std::endl;
+        player = LoadGame();
+        
         std::cout << "Back to Game!" << std::endl;
     }
     else{
         std::cout <<"ai wan bu wan"<<std::endl;
         return 0;
     }
-    
-    SaveGame(player);
+    std::cout <<"----------------------------"<<std::endl;
+    std::cout <<"Your attribution now: ";
+    std::cout << player.character_name << " ";
+    std::cout << player.HealthPoints << " ";
+    std::cout << player.MagicPoints << " ";
+    std::cout << player.process << " ";
 
+
+ //   SaveGame(player);
+ //   Fight();
     return 0;
 }
