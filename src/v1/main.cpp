@@ -7,11 +7,12 @@
 int main()
 {
     InGame game;
-    game.initGame();
+    game.init_Game();
 
-    while (game.gameStatus)
+    while (game.game_status())
     {
         game.Menu();
     }
+
     return 0;
 }

@@ -1,29 +1,32 @@
-# include <iostream>
-# include <fstream>
-# include <pthread.h>
-# include <math.h>
-
-# include <Character.h>
+#include <iostream>
+#include <fstream>
+#include <pthread.h>
+#include <math.h>
+#include <Character.h>
 
 using namespace std;
 
-class InGame{
+class InGame
+{
 
 private:
     int option;
     Character character;
+    string fileName;
 
 public:
     InGame();
     virtual ~InGame();
 
     //Functions
-    void init_Game()
+    void init_Game();
+    void createGame();
     void Menu();
     void Fight();
-    void ShowStates();
+    void ShowStats();
     void saveGame();
     void loadGame();
     void newGame();
     void Exit();
+    bool game_status();
 };
