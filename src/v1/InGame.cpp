@@ -11,29 +11,63 @@ InGame::~InGame()
 
 // Initialize the game (loading or create a new one)
 void InGame::init_Game()
-{
-    ifstream savingFile;
-    savingFile.open(this->fileName);
+{   
+    system("clear");
+    cout << "ENTER to continue..." << endl;
+    cin.get();
+    cout << "---------------------------------------" << endl;
+    cout << "Main Menu" << endl;
+    cout << "0: New Game" << endl;
+    cout << "1: Load Game" << endl;
+    cout << "2: Exit" << endl;
+    cout << "---------------------------------------" << endl;
+    cout << "Give your option: " << endl;
 
-    if (savingFile.is_open())
+    int option_main;
+    cin >> option_main;
+
+    while (cin.fail() || option_main > 2)
     {
-        cout << "Loading" << endl;
-        this->loadGame();
+        cout << "False input" << endl;
+        cout << "Give your option again" << endl;
+        cin.clear();
+
+        // Extracts characters from the input sequence and discards them, until either n characters have been extracted, or one compares equal to delim.
+        cin.ignore(5, '\n');
+
+        cout << "Option in range [0,2]" << endl;
+        cin >> this->option;
     }
-    else
+
+    switch (option_main)
     {
+    case 0:
         createGame();
-        this->saveGame();
+        saveGame();
+        break;
+    case 1:
+    {
+        ifstream savingFile;
+        savingFile.open(this->fileName);
+        assert(savingFile.is_open());
+        cout << "Loading" << endl;
+        loadGame();
+        savingFile.close();
+        break;
     }
-    savingFile.close();
+
+    case 2:
+        Exit();
+        break;
+    }
 }
 
 void InGame::createGame()
 {
 
     string name = "";
-    cout << "Character name: ";
-    getline(cin, name);
+    cout << "Give your Character's name: " << endl;
+    cin >> name;
 
     //Create character
     character.initialize(name);
@@ -90,18 +124,20 @@ void InGame::loadGame()
 
     savingFile.close();
 }
-void InGame::Menu()
+void InGame::InGame_Menu()
 {
 
     cout << "ENTER to continue..." << endl;
+    cin.ignore(5, '\n');
     cin.get();
-
+    system("clear");
+    cout << "-----------------************************----------------------" << endl;
     cout << "You have following options" << endl;
     cout << "0: Fight" << endl;
     cout << "1: Showstats" << endl;
     cout << "2: Save" << endl;
     cout << "3: Exit" << endl;
-
+    cout << "-----------------************************----------------------" << endl;
     cout << "Give your option: " << endl;
     cin >> this->option;
 

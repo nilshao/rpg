@@ -2,7 +2,9 @@
 #include <fstream>
 #include <pthread.h>
 #include <math.h>
+#include <cassert>
 #include <Character.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -21,7 +23,7 @@ public:
     //Functions
     void init_Game();
     void createGame();
-    void Menu();
+    void InGame_Menu();
     void Fight();
     void ShowStats();
     void saveGame();

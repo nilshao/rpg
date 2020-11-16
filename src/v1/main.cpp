@@ -11,7 +11,7 @@ int main()
 
     while (game.game_status())
     {
-        game.Menu();
+        game.InGame_Menu();
     }
 
     return 0;
