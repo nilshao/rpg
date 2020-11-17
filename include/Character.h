@@ -4,9 +4,6 @@
 #include <math.h>
 #include <sstream>
 #include <string>
-#include <stdlib.h>
-
-
 using namespace std;
 
 class Character

@@ -11,10 +11,10 @@ InGame::~InGame()
 
 // Initialize the game (loading or create a new one)
 void InGame::init_Game()
-{   
-    system("clear");
+{
     cout << "ENTER to continue..." << endl;
     cin.get();
+    system("clear");
     cout << "---------------------------------------" << endl;
     cout << "Main Menu" << endl;
     cout << "0: New Game" << endl;
@@ -49,10 +49,21 @@ void InGame::init_Game()
     {
         ifstream savingFile;
         savingFile.open(this->fileName);
-        assert(savingFile.is_open());
-        cout << "Loading" << endl;
-        loadGame();
-        savingFile.close();
+
+        
+            
+        if(savingFile.is_open()){
+            cout << "Saving File Found!" << endl;
+            cout << "Loading" << endl;
+            loadGame();
+            savingFile.close();}
+        
+        else{
+            system("clear");
+            cout <<"Error! No Saving File Found! "<<endl;
+            cout <<"You need to create a new file!"<<endl;
+            createGame();
+        }
         break;
     }
 
@@ -71,6 +82,7 @@ void InGame::createGame()
 
     //Create character
     character.initialize(name);
+    system("clear");
     cout << "Character: " << name << " is created!" << endl;
 }
 
@@ -130,7 +142,7 @@ void InGame::InGame_Menu()
     cout << "ENTER to continue..." << endl;
     cin.ignore(5, '\n');
     cin.get();
-    system("clear");
+
     cout << "-----------------************************----------------------" << endl;
     cout << "You have following options" << endl;
     cout << "0: Fight" << endl;

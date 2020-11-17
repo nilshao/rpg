@@ -4,7 +4,6 @@
 #include <math.h>
 #include <cassert>
 #include <Character.h>
-#include <stdlib.h>
 
 using namespace std;
 

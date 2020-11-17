@@ -6,9 +6,10 @@
 
 int main()
 {
+    system("clear");
     InGame game;
     game.init_Game();
-
+    
     while (game.game_status())
     {
         game.InGame_Menu();
